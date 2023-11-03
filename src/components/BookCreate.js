@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-function BookCreate({onCreateBook}){
-    const [title, setTitle] = useState('');    
-    
+function BookCreate({ onCreateBook }) {
+    const [title, setTitle] = useState('');
+
     const handleChange = (event) => {
         setTitle(event.target.value);
     };
@@ -13,13 +13,15 @@ function BookCreate({onCreateBook}){
         setTitle('');
     }
 
-    return <div>
+    return
+    (<div className="book-create">
+        <h3>Add a Book</h3>
         <form onSubmit={handleSubmit}>
             <label>Title</label>
-            <input onChange={handleChange} value={title}/>
-            <button>Create!</button>
+            <input className="input" onChange={handleChange} value={title} />
+            <button className="button">Create!</button>
         </form>
-    </div>;
+    </div>);
 }
 
 export default BookCreate;

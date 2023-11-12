@@ -13,8 +13,8 @@ function App() {
         }]);
     };
 
-    const editBook = () => {
-
+    const editBook = (title) => {
+        console.log('edit book', title);
     };
 
     const deleteBookById = (id) => {
@@ -25,7 +25,7 @@ function App() {
     };
 
     return <div className='app'>
-        <BookList onDelete={deleteBookById} books={books} />
+        <BookList onEdit={editBook} onDelete={deleteBookById} books={books} />
         <BookCreate onCreateBook={createBook} />
     </div>;
 }

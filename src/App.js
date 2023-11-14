@@ -1,16 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import BookList from './components/BookList';
 import BookCreate from './components/BookCreate';
 
 function App() {
     const [books, setBooks] = useState([]);
 
-    const createBook = (title) => {
-        console.log('create book', title);
-        setBooks([...books, {
-            id: Math.round(Math.random() * 9999),
+    //used to run code in specific point in time
+    //in this case runs on initial render only
+    useEffect(() => { 
+        fetchBooks();
+    }, []);
+
+    const fetchBooks = async () => {
+        const response = await axios.get('http://localhost:3001/books');
+
+        setBooks(response.data);
+    };
+
+    const createBook = async (title) => {
+        const response = await axios.post('http://localhost:3001/books',{
             title
-        }]);
+        });
+
+        setBooks([...books, response.data]);
     };
 
     const editBookById = (id, title) => {

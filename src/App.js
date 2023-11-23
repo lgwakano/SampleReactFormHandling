@@ -10,7 +10,7 @@ function App() {
     //in this case runs on initial render only
     useEffect(() => { 
         fetchBooks();
-    }, []);
+    }, [fetchBooks]);
     
 
     return <div className='app'>
